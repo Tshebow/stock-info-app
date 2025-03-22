@@ -1,26 +1,22 @@
-import "./Counter.css";
+import "./StockOptions.css";
 import {useDispatch, useSelector} from "react-redux";
-import {increment} from "./counterSlice";
+import {addOption} from "./stockOptionsSlice.js";
 import {Button, Group, Input, Text, VStack} from "@chakra-ui/react";
 import {useCallback, useState} from "react";
 
 
-const Counter = () => {
+const StockOptions = () => {
   const dispatch = useDispatch();
-  const count = useSelector(state => state.counter.value);
-
+  const savedStockValues = useSelector(state => state.stockOptions.history);
+  
   const [stockValue, setStockValue] = useState("");
-  const [savedStockValues, setSavedStockValues] = useState([]);
 
   const onClickEvent = useCallback(() => {
-    savedStockValues.push(stockValue);
-    setSavedStockValues(savedStockValues);
-    console.log(savedStockValues);
+    dispatch(addOption(stockValue));
     setStockValue("");
-  }, [savedStockValues, stockValue]);
+  }, [dispatch, stockValue]);
 
   const onStockValueChange = useCallback(({target: {value}}) => {
-    console.log(value);
     setStockValue(value);
   }, []);
 
@@ -34,12 +30,9 @@ const Counter = () => {
             Add
           </Button>
         </Group>
-        <Button onClick={() => dispatch(increment())}>
-          count is {count}
-        </Button>
       </VStack>
     </div>
   );
 };
 
-export default Counter;
+export default StockOptions;
