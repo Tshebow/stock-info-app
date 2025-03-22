@@ -9,9 +9,12 @@ const stockOptionsSlice = createSlice({
   reducers: {
     addOption: (state, action) => {
       state.history.push(action.payload);
+    },
+    clearOptions: state => {
+      state.history = [];
     }
   }
 });
 
-export const {addOption} = stockOptionsSlice.actions;
+export const {addOption, clearOptions} = stockOptionsSlice.actions;
 export default stockOptionsSlice.reducer;
