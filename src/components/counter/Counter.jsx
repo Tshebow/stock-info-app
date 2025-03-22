@@ -1,18 +1,36 @@
 import "./Counter.css";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {increment} from "./counterSlice";
-import {VStack, Group, Input, Button} from "@chakra-ui/react";
+import {Button, Group, Input, Text, VStack} from "@chakra-ui/react";
+import {useCallback, useState} from "react";
 
 
 const Counter = () => {
-  const count = useSelector(state => state.counter.value);
   const dispatch = useDispatch();
+  const count = useSelector(state => state.counter.value);
+
+  const [stockValue, setStockValue] = useState("");
+  const [savedStockValues, setSavedStockValues] = useState([]);
+
+  const onClickEvent = useCallback(() => {
+    savedStockValues.push(stockValue);
+    setSavedStockValues(savedStockValues);
+    console.log(savedStockValues);
+    setStockValue("");
+  }, [savedStockValues, stockValue]);
+
+  const onStockValueChange = useCallback(({target: {value}}) => {
+    console.log(value);
+    setStockValue(value);
+  }, []);
+
   return (
     <div className="card">
       <VStack spacing={10}>
+        {savedStockValues && (<Text>{savedStockValues.map(value => value + " ")}</Text>)}
         <Group attached w="full" maxW="sm">
-          <Input flex="1" placeholder="Enter stock option" />
-          <Button bg="bg.subtle" variant="outline">
+          <Input flex="1" placeholder="Enter stock option" value={stockValue} onChange={onStockValueChange}/>
+          <Button bg="bg.subtle" variant="outline" onClick={onClickEvent}>
             Add
           </Button>
         </Group>
