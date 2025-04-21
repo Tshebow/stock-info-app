@@ -16,5 +16,9 @@ const stockOptionsSlice = createSlice({
   }
 });
 
-export const {addOption, clearOptions} = stockOptionsSlice.actions;
+export const {
+  addOption,
+  clearOptions
+} = stockOptionsSlice.actions;
+
 export default stockOptionsSlice.reducer;

@@ -32,5 +32,12 @@ const notificationSlice = createSlice({
   }
 });
 
-export const {addError, addSuccess, addWarning, addInfo, clearNotification} = notificationSlice.actions;
+export const {
+  addError,
+  addSuccess,
+  addWarning,
+  addInfo,
+  clearNotification
+} = notificationSlice.actions;
+
 export default notificationSlice.reducer;

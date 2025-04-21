@@ -5,10 +5,12 @@ import Notification from "./notification/Notification.jsx";
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Notification/>
-      <StockOptions/>
-      <Report/>
+      <div>
+        <StockOptions/>
+        <Report/>
+      </div>
       <p className="read-the-docs">
         Stock advice test application - do not trust as financial advisor!!!
       </p>
