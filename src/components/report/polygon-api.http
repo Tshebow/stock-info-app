@@ -1,0 +1,7 @@
+### Get Dividends - test polygon key
+GET https://api.polygon.io/v3/reference/dividends
+Authorization: Bearer {{polygon-secret}}
+
+### Get aggregate bars for Tesla Company - TSLA
+GET https://api.polygon.io/v2/aggs/ticker/TSLA/range/1/day/2025-01-09/2025-01-10?adjusted=true&sort=asc&limit=120
+Authorization: Bearer {{polygon-secret}}
